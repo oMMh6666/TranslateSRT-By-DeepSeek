@@ -2,14 +2,12 @@
 Auto Click Continue Button, hook response function to receive dialog content, write to .md file
 
 ## python enviroment:
-
 pip install playwright
 
 ## need pre-install chrome browser in 
 CHROME_PATH = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
 
-## also you can change the define in .py file
-
+also you can change the define in .py file
 
 ## run cmd:
 python translate_srt.py
@@ -17,12 +15,14 @@ python translate_srt.py
 ## self-define prompt:
 提示词.txt
 
-## function:
-1. auto open the chrome
-2. auto open the page https://chat.deepseek.com/
-3. login ds by your self
-4. finished login you will get the console output infomation for your self info
-5. 
+## operate step:
+1. auto open the chrome and navi to page https://chat.deepseek.com/
+2. login ds by your self
+3. when finished login you will get the console output infomation for your self info(see end of the README.md)
+4. auto-complete the 提示词.txt content into the dialoge textarea
+5. upload your srt file to ds
+6. enter enter enter/ submit submit submit
+7. just waiting for a long long time
 
 ## console output sample just like below:
 💡 监控中... 发现“继续生成”按钮时会自动点击。
@@ -45,3 +45,5 @@ python translate_srt.py
 
 🛑 程序停止 (原因: KeyboardInterrupt)
 ✨ 运行结束。
+
+## At last, you will get the translated_srt.md in same folder to get the translate result.
