@@ -19,15 +19,19 @@ python translate_srt.py
 1. auto open the chrome and navi to page https://chat.deepseek.com/
 2. login ds by your self
 3. when finished login you will get the console output infomation for your self info(see end of the README.md)
-4. auto-complete the 提示词.txt content into the dialoge textarea
-5. upload your srt file to ds
-6. enter enter enter/ submit submit submit
-7. just waiting for a long long time
+4. your login info will write to auth.json(keep the file in the folder, if the file be deleted, you had to login again)
+5. auto-complete the file 提示词.txt content into the textarea in webpage
+6. upload your srt file to ds
+7. enter enter enter/ submit submit submit
+8. just waiting for a long long time
 
 ## console output sample just like below:
 💡 监控中... 发现“继续生成”按钮时会自动点击。
+
 📝 正在自动填充提示词...
+
 🎯 已检测到智能搜索开启，执行点击关闭
+
 👤 用户信息解析成功:
    ID: ******************************
    昵称: ************
