@@ -1,67 +1,57 @@
 # TranslateSRT-By-DeepSeek
-Auto Click Continue Button, hook response function to receive dialog content, write to .md file
+TranslateSRT-By-DeepSeek 是一款基于 Playwright 的自动化工具。它通过模拟浏览器操作，自动点击 DeepSeek 的“继续生成”按钮，并拦截 API 响应以提取对话内容，最终将其保存为本地 Markdown 文件。
 
-## python enviroment:
+## 环境准备
+### 1. Python 环境
+安装依赖库：
+
+Bash
 pip install playwright
+### 2. 浏览器要求
+程序默认调用本地 Chrome 浏览器，请确保已安装：
 
-## need pre-install chrome browser in 
-CHROME_PATH = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
+默认路径：C:\Program Files\Google\Chrome\Application\chrome.exe
 
-also you can change the define in .py file
+如果你的安装路径不同，请在 translate_srt.py 文件中修改 CHROME_PATH 变量。
 
-## run cmd:
-python translate_srt.py
+### 使用步骤
+启动程序：执行命令 python translate_srt.py。
 
-## self-define prompt:
-提示词.txt
 
-## operate step:
-1. auto open the chrome and navi to page https://chat.deepseek.com/
-2. login ds by your self
-3. when finished login you will get the console output infomation for your self info(see end of the README.md)
-4. your login info will write to auth.json(keep the file in the folder, if the file be deleted, you had to login again)
-5. auto-complete the file 提示词.txt content into the textarea in webpage
-6. upload your srt file to ds
-7. enter enter enter/ submit submit submit
-8. just waiting for a long long time
+自动登录：程序将自动启动 Chrome 并导航至 DeepSeek 官网。请在弹出的浏览器窗口中手动完成登录。
 
-## console output sample just like below:
+身份验证：登录成功后，控制台会显示用户信息。程序会自动将登录凭据保存至 auth.json。
+
+注意：请妥善保管 auth.json。如果该文件被删除，下次运行需重新登录。
+
+配置提示词：在同级目录下的 提示词.txt 中填写你的翻译要求。程序会自动将该内容填入对话框。
+
+上传文件：手动将需要翻译的 .srt 文件上传至 DeepSeek 对话框。
+
+开始翻译：点击发送/提交按钮，然后静候程序自动处理。
+
+### 核心功能
+自动续传：实时监控对话状态，发现“继续生成”按钮时自动点击，无需人工干预。
+
+智能降噪：自动检测并关闭可能干扰翻译流程的“智能搜索”功能。
+
+响应拦截：通过 Hook 响应函数直接获取结构化数据，确保翻译内容的完整性。
+
+自动保存：检测到生成状态为 FINISHED 后，自动将结果导出为 translated_srt.md。
+
+### 控制台输出示例
+Plaintext
 💡 监控中... 发现“继续生成”按钮时会自动点击。
-
 📝 正在自动填充提示词...
-
-🎯 已检测到智能搜索开启，执行点击关闭
-
-👤 用户信息解析成功:
-
+🎯 已检测到智能搜索开启，执行点击关闭。
+👤 用户信息解析成功：
    ID: ******************************
-   
    昵称: ************
-   
    手机: ************
-   
-身份验证成功，已更新Auth.json
-
-🎯 发现按钮，执行点击...
+✨ 身份验证成功，已更新 auth.json。
 
 [15:06:36] [📊 Token总消耗: 54146] 🎯 发现按钮，执行点击...
-
-[15:09:14] [📊 Token总消耗: 62328] 🎯 发现按钮，执行点击...
-
-[15:12:02] [📊 Token总消耗: 70519] 🎯 发现按钮，执行点击...
-
-[15:14:49] [📊 Token总消耗: 78705] 🎯 发现按钮，执行点击...
-
-[15:17:40] [📊 Token总消耗: 86896] 🎯 发现按钮，执行点击...
-
-[15:20:32] [📊 Token总消耗: 95087] 🎯 发现按钮，执行点击...
-
-[15:23:46] [📊 Token总消耗: 104694]
-
-✅ 检测到 FINISHED 状态，准备保存并退出...
-
+[15:23:46] [📊 Token总消耗: 104694] ✅ 检测到 FINISHED 状态，准备保存并退出...
 
 🛑 程序停止 (原因: KeyboardInterrupt)
 ✨ 运行结束。
-
-## At last, you will get the translated_srt.md in same folder to get the translate result.
